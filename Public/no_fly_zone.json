@@ -1,0 +1,255 @@
+{
+    "no_fly_zones": [
+      {
+        "name": "Taj Mahal",
+        "location": "Agra, Uttar Pradesh",
+        "coordinates": {
+          "latitude": 27.1751,
+          "longitude": 78.0421
+        },
+        "range_km": 2.5,
+        "reason": "Security threats"
+      },
+      {
+        "name": "Rashtrapati Bhavan",
+        "location": "New Delhi",
+        "coordinates": {
+          "latitude": 28.6144,
+          "longitude": 77.1996
+        },
+        "range_km": 5,
+        "reason": "Security of the President"
+      },
+      {
+        "name": "Mathura Refinery",
+        "location": "Mathura, Uttar Pradesh",
+        "coordinates": {
+          "latitude": 27.5010,
+          "longitude": 77.6684
+        },
+        "range_km": 2,
+        "reason": "Presence of hazardous materials"
+      },
+      {
+        "name": "Golden Temple",
+        "location": "Amritsar, Punjab",
+        "coordinates": {
+          "latitude": 31.6200,
+          "longitude": 74.8765
+        },
+        "range_km": 3,
+        "reason": "Religious and security reasons"
+      },
+      {
+        "name": "Indira Gandhi International Airport",
+        "location": "New Delhi",
+        "coordinates": {
+          "latitude": 28.5562,
+          "longitude": 77.1000
+        },
+        "range_km": 10,
+        "reason": "Air traffic control"
+      },
+      {
+        "name": "Chhatrapati Shivaji Maharaj International Airport",
+        "location": "Mumbai, Maharashtra",
+        "coordinates": {
+          "latitude": 19.0896,
+          "longitude": 72.8656
+        },
+        "range_km": 10,
+        "reason": "Air traffic control"
+      },
+      {
+        "name": "Bangalore Airport",
+        "location": "Bangalore, Karnataka",
+        "coordinates": {
+          "latitude": 13.1986,
+          "longitude": 77.7066
+        },
+        "range_km": 10,
+        "reason": "Air traffic control"
+      },
+      {
+        "name": "Bay of Bengal",
+        "location": "Eastern Coast of India",
+        "coordinates": {
+          "latitude": 15.0,
+          "longitude": 88.0
+        },
+        "range_km": 500,
+        "reason": "Missile testing"
+      },
+      {
+        "name": "Andaman & Nicobar Islands",
+        "location": "Indian Ocean",
+        "coordinates": {
+          "latitude": 12.0,
+          "longitude": 93.0
+        },
+        "range_km": 500,
+        "reason": "Military exercises"
+      },
+      {
+        "name": "Tower of Silence",
+        "location": "Mumbai, Maharashtra",
+        "coordinates": {
+          "latitude": 18.9598,
+          "longitude": 72.8120
+        },
+        "range_km": 2,
+        "reason": "Cultural and religious reasons"
+      },
+      {
+        "name": "White House",
+        "location": "Washington, D.C., USA",
+        "coordinates": {
+          "latitude": 38.8977,
+          "longitude": -77.0365
+        },
+        "range_km": 1,
+        "reason": "Security of the President"
+      },
+      {
+        "name": "Buckingham Palace",
+        "location": "London, UK",
+        "coordinates": {
+          "latitude": 51.5014,
+          "longitude": -0.1419
+        },
+        "range_km": 1,
+        "reason": "Royal security"
+      },
+      {
+        "name": "Eiffel Tower",
+        "location": "Paris, France",
+        "coordinates": {
+          "latitude": 48.8584,
+          "longitude": 2.2945
+        },
+        "range_km": 1,
+        "reason": "Security and tourist safety"
+      },
+      {
+        "name": "Forbidden City",
+        "location": "Beijing, China",
+        "coordinates": {
+          "latitude": 39.9163,
+          "longitude": 116.3972
+        },
+        "range_km": 1,
+        "reason": "Cultural heritage protection"
+      },
+      {
+        "name": "Kremlin",
+        "location": "Moscow, Russia",
+        "coordinates": {
+          "latitude": 55.7517,
+          "longitude": 37.6178
+        },
+        "range_km": 2,
+        "reason": "Government security"
+      },
+      {
+        "name": "Vatican City",
+        "location": "Vatican City",
+        "coordinates": {
+          "latitude": 41.9029,
+          "longitude": 12.4534
+        },
+        "range_km": 1,
+        "reason": "Religious and historical significance"
+      },
+      {
+        "name": "Great Mosque of Mecca",
+        "location": "Mecca, Saudi Arabia",
+        "coordinates": {
+          "latitude": 21.4225,
+          "longitude": 39.8262
+        },
+        "range_km": 5,
+        "reason": "Religious significance"
+      },
+      {
+        "name": "Masjid an-Nabawi",
+        "location": "Medina, Saudi Arabia",
+        "coordinates": {
+          "latitude": 24.4684,
+          "longitude": 39.6104
+        },
+        "range_km": 5,
+        "reason": "Religious significance"
+      },
+      {
+        "name": "Korean Demilitarized Zone (DMZ)",
+        "location": "Korea",
+        "coordinates": {
+          "latitude": 38.3217,
+          "longitude": 127.5347
+        },
+        "range_km": 2,
+        "reason": "Military conflict"
+      },
+      {
+        "name": "Colombo City",
+        "location": "Sri Jayawardenapura Kotte, Sri Lanka",
+        "coordinates": {
+          "latitude": 6.9271,
+          "longitude": 79.8612
+        },
+        "range_km": 1.9,
+        "reason": "Security of Parliament"
+      },
+      {
+        "name": "Sapugaskanda Oil Refinery",
+        "location": "Sapugaskanda, Sri Lanka",
+        "coordinates": {
+          "latitude": 6.9714,
+          "longitude": 79.9495
+        },
+        "range_km": 0.46,
+        "reason": "Presence of hazardous materials"
+      },
+      {
+        "name": "Temple of the Tooth",
+        "location": "Kandy, Sri Lanka",
+        "coordinates": {
+          "latitude": 7.2933,
+          "longitude": 80.6394
+        },
+        "range_km": 3.7,
+        "reason": "Cultural and religious reasons"
+      },
+      {
+        "name": "İmralı Island",
+        "location": "Marmara Sea, Turkey",
+        "coordinates": {
+          "latitude": 40.5167,
+          "longitude": 28.6167
+        },
+        "range_km": 3,
+        "reason": "Prison security"
+      },
+      {
+        "name": "Taipei 101 and Presidential Hall",
+        "location": "Taipei, Taiwan",
+        "coordinates": {
+          "latitude": 25.0339,
+          "longitude": 121.5645
+        },
+        "range_km": 5,
+        "reason": "Security reasons"
+      },
+      {
+        "name": "Presidential Office Building",
+        "location": "Taipei, Taiwan",
+        "coordinates": {
+          "latitude": 25.0375,
+          "longitude": 121.5637
+        },
+        "range_km": 2,
+        "reason": "Security reasons"
+      }
+    ]
+  }
+  

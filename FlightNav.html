@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbus Flight Navigation System</title>
+    <link rel="stylesheet" href="FlightNav.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        .login-page {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .login-page h1, .login-page h2 {
+            margin-bottom: 20px;
+        }
+        .login-page h1 {
+            color: blue;
+        }
+        .login-page h2 {
+            color: green;
+        }
+        .login-page form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-page label, .login-page input, .login-page button {
+            margin-bottom: 10px;
+        }
+        .login-page input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-page button {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-page button:hover {
+            background: #0056b3;
+        }
+        .information-container {
+            margin-top: 20px;
+        }
+        .selected-flight-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .flight-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .no-fly-zone-red {
+            color: red;
+        }
+        .no-fly-zone-green {
+            color: green;
+        }
+        #alternative-route-container {
+            margin-top: 20px;
+        }
+        #alternative-route {
+            font-weight: bold;
+            color: red;
+        }
+        #flight-map {
+            display: none;
+            margin-top: 20px;
+        }
+        #flight-map img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="login-page" class="login-page">
+            <h1>Aeroglitch</h1>
+            <h2>Welcome to the Flight Navigation System</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-error" style="color: red; display: none;">Invalid username or password</p>
+        </div>
+
+        <div id="main-page" class="flight-nav" style="display: none;">
+            <h1 class="title" style="color: rgb(4, 12, 4);">Flight Optimised and Safe Navigation System</h1>
+            <div class="search-flights-options">
+                <label for="latitude">Enter Source Latitude:</label>
+                <input type="text" id="latitude">
+                <label for="longitude">Enter Source Longitude:</label>
+                <input type="text" id="longitude">
+                <button onclick="searchFlights()">Search Flights</button>
+            </div>
+            <div id="information-container" class="information-container" style="display: none;">
+                <div id="selected-flight-card" class="selected-flight-card">
+                    <h1 class="title" style="color: blue;">Flight Information</h1>
+                    <div class="flight-info">
+                        <div class="flight-info-item">
+                            <p>Name:</p>
+                            <p id="flight-name">Airbus A30</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Source:</p>
+                            <p id="flight-source">New Delhi</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Source Coordinates:</p>
+                            <p id="flight-source-coords">28.63576000, 77.22445000</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Destination:</p>
+                            <p id="flight-destination">Bangalore</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Destination Coordinates:</p>
+                            <p id="flight-destination-coords">12.97194000, 77.59369000</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Route:</p>
+                            <p id="flight-route">DEL-BLR</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Weather and Humidity:</p>
+                            <p id="flight-weather">43°C, 70%</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>No Fly Zone:</p>
+                            <p>
+                                <span id="no-fly-zone" class="no-fly-zone no-fly-zone-green"></span>
+                            </p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Traffic:</p>
+                            <p id="flight-traffic">5</p>
+                        </div>
+                        <div class="flight-info-item">
+                            <p>Risk:</p>
+                            <p id="flight-risk">10%</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="alternative-route-container" style="display: none;">
+                    <p id="alternative-route"></p>
+                </div>
+                <div id="flight-map">
+                    <img src="C:/Users/Madup/Downloads/Aeroglitch/Aeroglitch/map_1.png" alt="Flight Path">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const flights = [
+            {
+                id: 1,
+                name: 'Airbus A30',
+                source: 'New Delhi',
+                sourceCoords: { lat: 28.63576000, lon: 77.22445000 },
+                destination: 'Bangalore',
+                destinationCoords: { lat: 12.97194000, lon: 77.59369000 },
+                route: 'DEL-BLR',
+                weather: { temp: 43, humidity: 70 },
+                noFlyZone: false,
+                traffic: 5,
+                risk: 10,
+                ranking: 1,
+                summary: "Direct from New Delhi to Bangalore"
+            },
+            {
+                id: 2,
+                name: 'Airbus A31',
+                source: 'New Delhi',
+                sourceCoords: { lat: 28.63576000, lon: 77.22445000 },
+                destination: 'Bangalore',
+                destinationCoords: { lat: 12.97194000, lon: 77.59369000 },
+                route: 'DEL-BLR',
+                weather: { temp: 43, humidity: 50 },
+                noFlyZone: false,
+                traffic: 6,
+                risk: 22,
+                ranking: 2,
+                summary: "New Delhi to Bangalore via Hyderabad"
+            },
+            {
+                id: 3,
+                name: 'Airbus A32',
+                source: 'New Delhi',
+                sourceCoords: { lat: 28.63576000, lon: 77.22445000 },
+                destination: 'Bangalore',
+                destinationCoords: { lat: 12.97194000, lon: 77.59369000 },
+                route: 'DEL-BLR',
+                weather: { temp: 10, humidity: 80 },
+                noFlyZone: true,
+                traffic: 5,
+                risk: 87,
+                ranking: 3,
+                summary: "New Delhi to Bangalore via Jaipur"
+            },
+        ];
+
+        const validUsername = "srilekha";
+        const validPassword = "143";
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === validUsername && password === validPassword) {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-page').style.display = 'block';
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
+
+        function searchFlights() {
+            const latitude = parseFloat(document.getElementById('latitude').value);
+            const longitude = parseFloat(document.getElementById('longitude').value);
+
+            const selectedFlight = flights.find(flight => 
+                flight.sourceCoords.lat === latitude && flight.sourceCoords.lon === longitude
+            );
+
+            if (selectedFlight) {
+                document.getElementById('information-container').style.display = 'block';
+                document.getElementById('flight-name').textContent = selectedFlight.name;
+                document.getElementById('flight-source').textContent = selectedFlight.source;
+                document.getElementById('flight-source-coords').textContent = `${selectedFlight.sourceCoords.lat}, ${selectedFlight.sourceCoords.lon}`;
+                document.getElementById('flight-destination').textContent = selectedFlight.destination;
+                document.getElementById('flight-destination-coords').textContent = `${selectedFlight.destinationCoords.lat}, ${selectedFlight.destinationCoords.lon}`;
+                document.getElementById('flight-route').textContent = selectedFlight.route;
+                document.getElementById('flight-weather').textContent = `${selectedFlight.weather.temp}°C, ${selectedFlight.weather.humidity}%`;
+                document.getElementById('no-fly-zone').className = `no-fly-zone ${selectedFlight.noFlyZone ? 'no-fly-zone-red' : 'no-fly-zone-green'}`;
+                document.getElementById('flight-traffic').textContent = selectedFlight.traffic;
+                document.getElementById('flight-risk').textContent = `${selectedFlight.risk}%`;
+
+                if (selectedFlight.risk >= 87) {
+                    document.getElementById('alternative-route-container').style.display = 'block';
+                    document.getElementById('alternative-route').textContent = "High risk detected! Suggested alternative route: New Delhi to Bangalore via Hyderabad.";
+                } else {
+                    document.getElementById('alternative-route-container').style.display = 'none';
+                }
+
+                if (selectedFlight.source === 'New Delhi' && selectedFlight.destination === 'Bangalore') {
+                    document.getElementById('flight-map').style.display = 'block';
+                } else {
+                    document.getElementById('flight-map').style.display = 'none';
+                }
+            } else {
+                document.getElementById('information-container').style.display = 'none';
+                alert("No flights found for the given source coordinates.");
+            }
+        }
+    </script>
+</body>
+</html>
